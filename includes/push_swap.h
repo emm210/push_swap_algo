@@ -52,4 +52,9 @@ void    rr(t_stack *SA, t_stack *SB);
 void    rra(t_stack *SA);
 void    rrb(t_stack *SB);
 void    rrr(t_stack *SA, t_stack *SB);
+
+void sort_3(t_stack *A);
+void sort_4(t_stack *A, t_stack* B);
+void sort_5(t_stack *A, t_stack* B);
+
 #endif
