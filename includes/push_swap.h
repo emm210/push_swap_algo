@@ -60,9 +60,12 @@ void sort_5(t_stack *A, t_stack* B);
 
 int parse_input(int argc , char** argv, t_stack *SA);
 void create_stack(t_stack *SA,int* temp, int* values,int count);
-int valid_number(char* str);
+int is_valid_number(char* str);
 void bubble_sort(int* array, int size);
 int has_duplicate(int* values,int count);
 void copyArray(int source[], int dest[], int size);
+void error_exit();
+char	**ft_split(char const *s, char c);
+void create_stack(t_stack *SA,int* temp, int* values,int count);
 //void  free_split(char** numbers);
 #endif

@@ -82,20 +82,7 @@ void sort_5(t_stack *A, t_stack* B)
     pa(A,B);
     pa(A,B);
 }
-void print_stack(t_stack *stack, char name)
-{
-    t_node *current;
 
-    printf("Stack %c (size = %d): ", name, stack->size);
-
-    current = stack->top;
-    while (current)
-    {
-        printf("%d ", current->value);
-        current = current->next;
-    }
-    printf("\n");
-}
 
 int main(void)
 {
