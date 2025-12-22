@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <limits.h>
 
 typedef struct s_node {
     struct s_node *next;
@@ -57,4 +58,11 @@ void sort_3(t_stack *A);
 void sort_4(t_stack *A, t_stack* B);
 void sort_5(t_stack *A, t_stack* B);
 
+int parse_input(int argc , char** argv, t_stack *SA);
+void create_stack(t_stack *SA,int* temp, int* values,int count);
+int valid_number(char* str);
+void bubble_sort(int* array, int size);
+int has_duplicate(int* values,int count);
+void copyArray(int source[], int dest[], int size);
+//void  free_split(char** numbers);
 #endif

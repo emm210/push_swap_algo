@@ -4,31 +4,20 @@ void sort_3(t_stack *A)
     t_node* a = A->top;
     t_node* b = a -> next;
     t_node* c = b -> next;
-    if(a-> rank < b-> rank && b-> rank < c-> rank)
-        return ;
-    else if (a->rank < c->rank && c->rank < b->rank)
-    {
-        sa(A);
-        ra(A);
-    }
-    else if (b->rank < a->rank && a->rank < c->rank)
-    {
-        sa(A);
-    }
-    else if (b->rank < c->rank && c->rank < a->rank)
-    {
-        rra(A);
-    }
-    else if (c->rank < a->rank && a->rank < b->rank)
+    if (a -> rank > b -> rank && a -> rank > c -> rank)
     {
         ra(A);
     }
-    else if (c->rank < b->rank && b->rank< a->rank)
+    else if (b -> rank > a -> rank  && b -> rank > c -> rank)
     {
-        sa(A);
         rra(A);
     }
-
+    a = A->top;
+    b = a -> next;
+    if(a -> rank > b ->rank )
+    {
+        sa(A);
+    }
 }
 
 int find_min_pos(t_stack *A) { 
@@ -117,15 +106,18 @@ int main(void)
     init_stack(&SB);
 
     t_node *node1 = new_node(23, 1);
-    t_node *node2 = new_node(12, 2);
-    t_node *node3 = new_node(33, 3);
-
+    t_node *node2 = new_node(12, 0);
+    t_node *node3 = new_node(89, 4);
+    t_node *node4 = new_node(43, 3);
+     t_node *node5 = new_node(30, 2);
     push(&SA, node1);
     push(&SA, node2);
+    push(&SA, node4);
+     push(&SA, node5);
     push(&SA, node3);
     print_stack(&SA, 'A');
 
-    sort_3(&SA);
+    sort_5(&SA, &SB);
     write(1, "\n", 1);
     print_stack(&SA, 'A');
     print_stack(&SB, 'B');
