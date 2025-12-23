@@ -43,8 +43,8 @@ int parse_input(int argc , char** argv, t_stack *SA)
     create_stack(SA, temp, values, count);
     free(temp);
     free(values);
-    // if (need_free)
-    //     free_split(numbers);
+    if (need_free)
+        free_split(numbers);
     
     return (1);
 }

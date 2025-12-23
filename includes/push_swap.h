@@ -67,5 +67,7 @@ void copyArray(int source[], int dest[], int size);
 void error_exit();
 char	**ft_split(char const *s, char c);
 void create_stack(t_stack *SA,int* temp, int* values,int count);
-//void  free_split(char** numbers);
+t_node *new_node(int value, int rank );
+void  free_split(char** numbers);
+void sort_small(t_stack* SA,t_stack* SB ,int size);
 #endif
