@@ -30,6 +30,6 @@ int main(int argc, char* argv[])
         sort_small(&SA,&SB ,SA.size);
     else
         big_sort(&SA, &SB, argc);
-    print_stack_debug(&SA, 'A');
+    // print_stack_debug(&SA, 'A');
 return (0);
 }

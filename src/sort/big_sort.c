@@ -1,4 +1,56 @@
 #include "push_swap.h"
+// int cheapest_direction(t_stack* A, int start , int end)
+// {
+//     int dist_top = 0;
+//     int dist_bottom = 0;
+//     t_node* current = A->top;
+//     t_node* current_b = A->bottom;
+//     while(current && current_b)
+//     {
+//         if ((current->rank >= start && current->rank <= end) || 
+//             (current_b->rank >= start && current_b->rank <= end))
+//             break;     
+//         current = current->next;
+//         dist_top++;
+//         current_b = current_b->prev;
+//         dist_bottom++;
+//     }
+//     if(dist_top <= dist_bottom)
+//         return (1);
+//     else
+//         return (0);
+// }
+int cheapest_direction(t_stack *A, int start, int end)
+{
+    t_node *top = A->top;
+    t_node *bot = A->bottom;
+    int dist_top = 0;
+    int dist_bot = 0;
+    int half = A->size / 2;
+
+    while (dist_top <= half || dist_bot <= half)
+    {
+        if (top && top->rank >= start && top->rank <= end)
+            return (1); 
+
+        if (bot && bot->rank >= start && bot->rank <= end)
+            return (0); 
+
+        if (top)
+        {
+            top = top->next;
+            dist_top++;
+        }
+        if (bot)
+        {
+            bot = bot->prev;
+            dist_bot++;
+        }
+    }
+    return (1);
+}
+
+
 int find_max_pos(t_stack *A) { 
     int current_pos = 1; 
     int max_pos = 0; 
@@ -8,7 +60,7 @@ int find_max_pos(t_stack *A) {
     { 
         if (current_node -> rank > max_node->rank) 
         {
-            max_node = current_node; 
+            max_node = current_node;
             max_pos = current_pos;
         }
         current_node = current_node -> next;
@@ -16,6 +68,7 @@ int find_max_pos(t_stack *A) {
     }
     return (max_pos); 
 }
+
 void big_sort(t_stack* SA, t_stack* SB, int argc)
 {
     int chunk_size = 0;
@@ -23,6 +76,8 @@ void big_sort(t_stack* SA, t_stack* SB, int argc)
     int max_rank = numbers -1 ;
     if (numbers <= 100)
         chunk_size = 20;
+    else if(numbers > 100)
+        chunk_size = 40;
     int start = 0;
     int count_rotation= 0;
     int end = chunk_size - 1;
@@ -38,8 +93,15 @@ void big_sort(t_stack* SA, t_stack* SB, int argc)
         }
         else
         {
+            if (cheapest_direction(SA, start , end)){
                 ra(SA);
                 count_rotation++;
+            }
+            else
+            {
+                rra(SA);
+                count_rotation++;
+            }
         }
         if( SA-> size == count_rotation)
         {
@@ -63,5 +125,4 @@ void big_sort(t_stack* SA, t_stack* SB, int argc)
         pa(SA, SB);
         max_rank--;
     }
-
 }
