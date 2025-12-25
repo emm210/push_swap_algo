@@ -26,9 +26,6 @@ int main(int argc, char* argv[])
     //     do_exit();
     // if (SA.size <= 5)
     //     sort_small(&SA);
-    // else
-    //     sort_chunk(&SA);
-    // free_all(&SA, &SB);
     if(SA.size <= 5)
         sort_small(&SA,&SB ,SA.size);
     else
