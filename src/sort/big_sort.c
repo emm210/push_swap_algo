@@ -51,78 +51,142 @@ int cheapest_direction(t_stack *A, int start, int end)
 }
 
 
-int find_max_pos(t_stack *A) { 
-    int current_pos = 1; 
-    int max_pos = 0; 
-    t_node *max_node = A->top; 
-    t_node *current_node = A-> top->next; 
-    while(current_node) 
-    { 
-        if (current_node -> rank > max_node->rank) 
+// int find_max_pos(t_stack *A) { 
+//     int current_pos = 1; 
+//     int max_pos = 0; 
+//     t_node *max_node = A->top; 
+//     t_node *current_node = A-> top->next; 
+//     while(current_node) 
+//     { 
+//         if (current_node -> rank > max_node->rank) 
+//         {
+//             max_node = current_node;
+//             max_pos = current_pos;
+//         }
+//         current_node = current_node -> next;
+//         current_pos++; 
+//     }
+//     return (max_pos); 
+// }
+
+int find_max_pos(t_stack *A)
+{
+    int pos = 0;
+    int max_pos = 0;
+    t_node *current;
+    int max_rank;
+
+    if (!A || !A->top)
+        return (-1);
+
+    current = A->top;
+    max_rank = current->rank;
+
+    while (current)
+    {
+        if (current->rank > max_rank)
         {
-            max_node = current_node;
-            max_pos = current_pos;
+            max_rank = current->rank;
+            max_pos = pos;
         }
-        current_node = current_node -> next;
-        current_pos++; 
+        current = current->next;
+        pos++;
     }
-    return (max_pos); 
+    return (max_pos);
 }
+
 
 void big_sort(t_stack* SA, t_stack* SB, int argc)
 {
     int chunk_size = 0;
     int numbers = argc - 1 ;
-    int max_rank = numbers -1 ;
+    // int max_rank = numbers -1 ;
     if (numbers <= 100)
-        chunk_size = 20;
+        chunk_size = numbers / 6;
     else if(numbers > 100)
-        chunk_size = 40;
+        chunk_size = numbers / 14;
     int start = 0;
-    int count_rotation= 0;
+    // int count_rotation= 0;
     int end = chunk_size - 1;
     while (SA->top)
     {
-        if(SA->top->rank >= start && SA->top->rank <= end)
+        // if(SA->top->rank >= start && SA->top->rank <= end)
+        // {
+        //     pb(SA, SB);
+        //     count_rotation = 0;
+        //     int mid = (end-start)/2;
+        //     printf("imane-%d",start);
+        //     if(SB->top->rank >= start && SB->top->rank <= start + mid)
+        //         rb(SB);
+        // }
+        // else
+        // {
+        //     if (cheapest_direction(SA, start , end)){
+        //         ra(SA);
+        //         count_rotation++;
+        //     }
+        //     else
+        //     {
+        //         rra(SA);
+        //         count_rotation++;
+        //     }
+        // }
+        // if( SA-> size == count_rotation)
+        // {
+        //     start += chunk_size;
+        //     end += chunk_size;
+        //     if (end > max_rank)
+        //         end = max_rank;
+        //     count_rotation = 0;
+        // }
+        if (SA->top->rank <= start)
+        {
+            pb(SA,SB);
+            rb(SB);
+            start++;
+            if (end < numbers - 1)
+                end++;
+        }
+        else if (SA->top->rank <= end)
         {
             pb(SA, SB);
-            count_rotation = 0;
-            int mid = (end-start)/2;
-            if(SB->top->rank >= start && SB->top->rank <= start + mid)
-                rb(SB);
+            if (SB->size > 1 && SB->top->next && SB->top->next->rank > SB->top->rank)
+                sb(SB);
+            start++;
+            if (end < numbers - 1)
+                end++;
         }
         else
-        {
-            if (cheapest_direction(SA, start , end)){
-                ra(SA);
-                count_rotation++;
-            }
-            else
-            {
-                rra(SA);
-                count_rotation++;
-            }
-        }
-        if( SA-> size == count_rotation)
-        {
-            start += chunk_size;
-            end += chunk_size;
-            if (end > max_rank)
-                end = max_rank;
-            count_rotation = 0;
-        }
+            ra(SA);
     }
+    // while (SB->top)
+    // {
+    //     while(SB->top->rank != max_rank)
+    //     {
+    //     int max_pos = find_max_pos(SB);
+    //     if (max_pos <= SB -> size / 2)
+    //             rb(SB);
+    //     else
+    //         rrb(SB);
+    //     }
+    //     pa(SA, SB);
+    //     max_rank--;
+    // }
     while (SB->top)
     {
-        while(SB->top->rank != max_rank)
-        {
         int max_pos = find_max_pos(SB);
-        if (max_pos <= SB -> size / 2)
+
+        if (max_pos <= SB->size / 2)
+        {
+            while (max_pos-- > 0)
                 rb(SB);
+        }
         else
-            rrb(SB);
+        {
+            while (max_pos++ < SB->size)
+                rrb(SB);
         }
         pa(SA, SB);
-        max_rank--;
     }
+
 }
