@@ -1,6 +1,7 @@
 #include "push_swap.h"
 void    rra(t_stack *SA)
 {
+    
     reverse_rotate_a(SA);
     write(1, "rra\n", 4);
 }

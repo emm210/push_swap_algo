@@ -24,12 +24,10 @@ int main(int argc, char* argv[])
         return (1);
     // if (is_sorted(&SA))
     //     do_exit();
-    // if (SA.size <= 5)
-    //     sort_small(&SA);
     if(SA.size <= 5)
         sort_small(&SA,&SB ,SA.size);
     else
-        big_sort(&SA, &SB, argc);
+        big_sort(&SA, &SB);
     // print_stack_debug(&SA, 'A');
 return (0);
 }
