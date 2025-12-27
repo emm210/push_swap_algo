@@ -60,7 +60,7 @@ void sort_3(t_stack *A);
 void sort_4(t_stack *A, t_stack* B);
 void sort_5(t_stack *A, t_stack* B);
 
-int parse_input(int argc , char** argv, t_stack *SA);
+void parse_input(int argc , char** argv, t_stack *SA);
 void create_stack(t_stack *SA,int* temp, int* values,int count);
 int is_valid_number(char* str);
 void bubble_sort(int* array, int size);
@@ -75,4 +75,9 @@ void sort_small(t_stack* SA,t_stack* SB ,int size);
 int find_min_pos(t_stack *A);
 void big_sort(t_stack* SA, t_stack* SB);
 void free_stack(t_stack *stack);
+char** get_numbers(int argc, char** argv ,int *need_free);
+void fill_values(char **numbers, int *values, int count);
+void build_stack(t_stack *SA, int *values, int count);
+int is_sorted(t_stack *stack);
+long ft_atol(const char *str);
 #endif

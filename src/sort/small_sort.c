@@ -155,7 +155,7 @@ void sort_small(t_stack* SA, t_stack* SB,int size)
 {
     if(size == 2)
     {
-        if (SA->top->value > SA->top->next->value)
+        if (SA->top->rank > SA->top->next->rank)
             sa(SA);
     }
     else if(size == 3)
