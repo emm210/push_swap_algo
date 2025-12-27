@@ -29,6 +29,30 @@ int find_max_pos(t_stack *A)
 
 void big_sort(t_stack* SA, t_stack* SB)
 {
+    // // DEBUG: Print stack contents
+    // printf("DEBUG sort_5 - Stack size: %d\n", SA->size);
+    // t_node *current = SA->top;
+    // printf("Ranks in stack: ");
+    // while (current) {
+    //     printf("%d ", current->rank);
+    //     current = current->next;
+    // }
+    // printf("\n");
+    
+    // // Check if we have the required ranks
+    // int has_rank_0 = 0, has_rank_1 = 0;
+    // current = SA->top;
+    // while (current) {
+    //     if (current->rank == 0) has_rank_0 = 1;
+    //     if (current->rank == 1) has_rank_1 = 1;
+    //     current = current->next;
+    // }
+    
+    // if (!has_rank_0 || !has_rank_1) {
+    //     printf("ERROR: Missing rank 0 or rank 1!\n");
+    //     exit(1);
+    // }
+
     int chunk_size = 0;
     int numbers = SA->size;
     if (numbers <= 100)

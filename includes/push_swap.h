@@ -18,6 +18,8 @@ typedef struct s_stack {
    int size;
 } t_stack;
 
+
+
 void    init_stack(t_stack *stack);
 
 t_node  *new_node(int value, int rank);
@@ -72,4 +74,5 @@ void  free_split(char** numbers);
 void sort_small(t_stack* SA,t_stack* SB ,int size);
 int find_min_pos(t_stack *A);
 void big_sort(t_stack* SA, t_stack* SB);
+void free_stack(t_stack *stack);
 #endif

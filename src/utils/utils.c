@@ -22,12 +22,14 @@ void copyArray(int source[], int dest[], int size) {
         dest[i] = source[i];
     }
 }
+
 void ft_swap(int *a, int *b){
     int temp;
     temp = *a;
     *a = *b;
     *b = temp;
 }
+
 void bubble_sort(int* array, int size)
 {
     int i = 0;
@@ -110,11 +112,13 @@ void create_stack(t_stack *SA,int* temp, int* values,int count)
         i--;
     }
 }
+
 void error_exit()
 {
     write(2, "Error\n", 6);
     exit(1);
 }
+
  void  free_split(char** str){
     int i = 0;
     while(str[i])

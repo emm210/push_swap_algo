@@ -1,20 +1,47 @@
 #include "push_swap.h"
-int find_min_pos(t_stack *A) { 
-    int current_pos = 1; 
-    int min_pos = 0; 
-    t_node *min_node = A->top; 
-    t_node *current_node = A-> top->next; 
-    while(current_node) 
-    { 
-        if (current_node -> rank < min_node->rank) 
+// int find_min_pos(t_stack *A) { 
+//     int current_pos = 1; 
+//     int min_pos = 0; 
+//     t_node *min_node = A->top; 
+//     t_node *current_node = A-> top->next; 
+
+//     while(current_node) 
+//     { 
+//         if (current_node -> rank < min_node->rank) 
+//         {
+//             min_node = current_node; 
+//             min_pos = current_pos;
+//         }
+//         current_node = current_node -> next;
+//         current_pos++; 
+//     }
+//     return (min_pos); 
+// }
+
+int find_min_pos(t_stack *A)
+{
+    int pos = 0;
+    int min_pos = 0;
+    t_node *current;
+    int min_rank;
+
+    if (!A || !A->top)
+        return (-1);
+
+    current = A->top;
+    min_rank = current->rank;
+
+    while (current)
+    {
+        if (current->rank < min_rank)
         {
-            min_node = current_node; 
-            min_pos = current_pos;
+            min_rank = current->rank;
+            min_pos = pos;
         }
-        current_node = current_node -> next;
-        current_pos++; 
+        current = current->next;
+        pos++;
     }
-    return (min_pos); 
+    return (min_pos);
 }
 
 void sort_3(t_stack *A)
@@ -22,7 +49,6 @@ void sort_3(t_stack *A)
     int a = A->top->rank;
     int b = A->top->next->rank;
     int c = A->top->next->next->rank;
-    
     if (a > b && b < c && a < c)        
         sa(A);
     else if (a > b && b > c)            

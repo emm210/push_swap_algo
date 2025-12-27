@@ -16,18 +16,20 @@ int main(int argc, char* argv[])
 {
     t_stack SA;
     t_stack SB;
-    if(argc < 2)
+    if(argc <= 2)
         return (0);
     init_stack(&SA);
     init_stack(&SB);
     if (!parse_input(argc, argv, &SA))
         return (1);
-    // if (is_sorted(&SA))
-    //     do_exit();
-    if(SA.size <= 5)
+    if (SA.size == 0)
+        return 0;
+    else if(SA.size <= 5)
         sort_small(&SA,&SB ,SA.size);
     else
         big_sort(&SA, &SB);
     // print_stack_debug(&SA, 'A');
+    free_stack(&SA);
+    free_stack(&SB);
 return (0);
 }
