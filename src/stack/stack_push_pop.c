@@ -53,8 +53,8 @@ t_node* pop(t_stack *stack)
 {
     t_node *node;
 
-    if (!stack || stack->size == 0)
-        return NULL;
+if (!stack || stack->size == 0 || !stack->top)
+        return (NULL);
 
     node = stack->top;
 

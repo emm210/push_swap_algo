@@ -1,19 +1,39 @@
 #include "push_swap.h"
 
-void    pa(t_stack *SA, t_stack *SB)
+void op_pa(t_stack *SA, t_stack *SB)
 {
-    t_node* node = pop (SB);
+    t_node *node;
+
+    if (!SB || SB->size == 0)
+        return;
+    node = pop(SB);
     if (!node)
-        return ;
+        return;
     push(SA, node);
-    write(1, "pa\n", 3);
 }
 
+void op_pb(t_stack *SA, t_stack *SB)
+{
+    t_node *node;
+
+    if (!SA || SA->size == 0)
+        return;
+    node = pop(SA);
+    if (!node)
+        return;
+    push(SB, node);
+}
+
+void    pa(t_stack *SA, t_stack *SB)
+{
+     op_pa(SA,SB);
+     write (1, "pa\n", 3);
+}
 void    pb(t_stack *SA, t_stack *SB)
 {
-    t_node* node = pop (SA);
-    if (!node)
-        return ;
-    push(SB, node);
-    write(1, "pb\n", 3);
+     op_pb(SA,SB);
+     write (1, "pb\n", 3);
 }
+
+
+

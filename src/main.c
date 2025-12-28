@@ -1,15 +1,30 @@
 #include "push_swap.h"
-void print_stack_debug(t_stack *S, char name)
-{
-    t_node *cur = S->top;
+// void print_stack_debug(t_stack *S, char name)
+// {
+//     t_node *cur = S->top;
 
-    printf("Stack %c (size = %d): ", name, S->size);
-    while (cur)
+//     printf("Stack %c (size = %d): ", name, S->size);
+//     while (cur)
+//     {
+//         printf("%d(%d) ", cur->value, cur->rank);
+//         cur = cur->next;
+//     }
+//     printf("\n");
+// }
+void sort_small(t_stack* SA, t_stack* SB,int size)
+{
+    if(size == 2)
     {
-        printf("%d(%d) ", cur->value, cur->rank);
-        cur = cur->next;
+        if (SA->top->rank > SA->top->next->rank)
+            sa(SA);
     }
-    printf("\n");
+    else if(size == 3)
+        sort_3(SA);
+    else if (size == 4)
+        sort_4(SA, SB);
+    else 
+        sort_5(SA, SB);
+
 }
 
 int main(int argc, char* argv[])

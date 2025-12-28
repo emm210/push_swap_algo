@@ -11,9 +11,14 @@ void    rb(t_stack *SB)
     write(1, "rb\n", 3);
 }
 
-void    rr(t_stack *SA, t_stack *SB)
+void    op_rr(t_stack *SA, t_stack *SB)
 {
     rotate_a(SA);
     rotate_b(SB);
+}
+
+void    rr(t_stack *SA, t_stack *SB)
+{
+    op_rr(SA, SB);
     write(1, "rr\n", 3);
 }

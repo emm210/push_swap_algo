@@ -41,20 +41,26 @@ void    reverse_rotate_b(t_stack *stack);
 void    pa(t_stack *SA, t_stack *SB);
 void    pb(t_stack *SA, t_stack *SB);
 
+void op_pa(t_stack *SA, t_stack *SB);
+void op_pb(t_stack *SA, t_stack *SB);
+
 /* swap operations */
 void    sa(t_stack *SA);
 void    sb(t_stack *SB);
 void    ss(t_stack *SA, t_stack *SB);
+void    op_ss(t_stack *SA, t_stack *SB);
 
 /* rotate operations */
 void    ra(t_stack *SA);
 void    rb(t_stack *SB);
 void    rr(t_stack *SA, t_stack *SB);
+void    op_rr(t_stack *SA, t_stack *SB);
 
 /* reverse rotate operations */
 void    rra(t_stack *SA);
 void    rrb(t_stack *SB);
 void    rrr(t_stack *SA, t_stack *SB);
+void    op_rrr(t_stack *SA, t_stack *SB);
 
 void sort_3(t_stack *A);
 void sort_4(t_stack *A, t_stack* B);
