@@ -1,24 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   op_rotate.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iait-mou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/28 20:54:02 by iait-mou          #+#    #+#             */
+/*   Updated: 2025/12/28 20:54:04 by iait-mou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-void    ra(t_stack *SA)
+
+void	ra(t_stack *SA)
 {
-    rotate_a(SA);
-    write(1, "ra\n", 3);
+	rotate_a(SA);
+	write(1, "ra\n", 3);
 }
 
-void    rb(t_stack *SB)
+void	rb(t_stack *SB)
 {
-    rotate_b(SB);
-    write(1, "rb\n", 3);
+	rotate_b(SB);
+	write(1, "rb\n", 3);
 }
 
-void    op_rr(t_stack *SA, t_stack *SB)
+void	op_rr(t_stack *SA, t_stack *SB)
 {
-    rotate_a(SA);
-    rotate_b(SB);
+	rotate_a(SA);
+	rotate_b(SB);
 }
 
-void    rr(t_stack *SA, t_stack *SB)
+void	rr(t_stack *SA, t_stack *SB)
 {
-    op_rr(SA, SB);
-    write(1, "rr\n", 3);
+	op_rr(SA, SB);
+	write(1, "rr\n", 3);
 }

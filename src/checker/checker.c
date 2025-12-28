@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iait-mou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/28 20:52:58 by iait-mou          #+#    #+#             */
+/*   Updated: 2025/12/28 20:53:01 by iait-mou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "checker.h"
+
 int	ft_streq(const char *s1, const char *s2)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	if (!s1 || !s2)
 		return (0);
 	while (s1[i] || s2[i])
@@ -13,30 +26,31 @@ int	ft_streq(const char *s1, const char *s2)
 	}
 	return (1);
 }
-void execute_op(int op,t_stack *SA, t_stack *SB)
+
+void	execute_op(int op, t_stack *SA, t_stack *SB)
 {
-    if(op == 1)
-        swap_a(SA);
-    else if (op == 2)
-        swap_b(SB);
-    else if (op == 3)
-        op_ss(SA,SB);
-    else if (op == 4)
-        op_pa(SA, SB);
-    else if (op == 5)
-        op_pb(SA, SB);
-    else if (op == 6)
-        rotate_a(SA);
-    else if (op == 7)
-        rotate_b (SB);
-    else if (op == 8)
-        op_rr(SA, SB);
-    else if (op == 9)
-        reverse_rotate_a(SA);
-    else if (op == 10)
-        reverse_rotate_b(SB);
-    else if (op== 11)
-        op_rrr(SA, SB);
+	if (op == 1)
+		swap_a(SA);
+	else if (op == 2)
+		swap_b(SB);
+	else if (op == 3)
+		op_ss(SA, SB);
+	else if (op == 4)
+		op_pa(SA, SB);
+	else if (op == 5)
+		op_pb(SA, SB);
+	else if (op == 6)
+		rotate_a(SA);
+	else if (op == 7)
+		rotate_b(SB);
+	else if (op == 8)
+		op_rr(SA, SB);
+	else if (op == 9)
+		reverse_rotate_a(SA);
+	else if (op == 10)
+		reverse_rotate_b(SB);
+	else if (op == 11)
+		op_rrr(SA, SB);
 }
 
 int	get_op_type(char *str)
@@ -67,31 +81,38 @@ int	get_op_type(char *str)
 		return (-1);
 }
 
-int main(int argc, char* argv[])
+void	check_sorted(t_stack *sa, t_stack *sb)
 {
-    t_stack SA;
-    t_stack SB;
-    char* str;
-    int op;
+	if (is_sorted(sa) && is_empty(sb))
+		write(1, "OK\n", 3);
+	else
+		write(1, "KO\n", 3);
+}
 
-    if(argc < 2)
-        return (0);
-    init_stack(&SA);
-    init_stack(&SB);
-    parse_input(argc, argv, &SA);
-    while ((str = get_next_line(0)))
-    {
-        op = get_op_type(str);
-        if (op == -1)
-            error_exit();
-        execute_op(op, &SA, &SB);
-        free(str);
-    }
-    if (is_sorted(&SA) && is_empty(&SB))
-        write(1, "OK\n", 3);
-    else
-        write(1, "KO\n", 3);
-    free_stack(&SA);
-    free_stack(&SB);
-return (0);
+int	main(int argc, char *argv[])
+{
+	t_stack	sa;
+	t_stack	sb;
+	char	*str;
+	int		op;
+
+	if (argc < 2)
+		return (0);
+	init_stack(&sa);
+	init_stack(&sb);
+	parse_input(argc, argv, &sa);
+	str = get_next_line(0);
+	while (str)
+	{
+		op = get_op_type(str);
+		if (op == -1)
+			error_exit();
+		execute_op(op, &sa, &sb);
+		free(str);
+		str = get_next_line(0);
+	}
+	check_sorted(&sa, &sb);
+	free_stack(&sa);
+	free_stack(&sb);
+	return (0);
 }

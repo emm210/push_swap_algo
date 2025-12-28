@@ -1,35 +1,50 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_input.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iait-mou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/28 20:55:29 by iait-mou          #+#    #+#             */
+/*   Updated: 2025/12/28 20:55:31 by iait-mou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-int count_numbers(char** numbers)
+
+int	count_numbers(char **numbers)
 {
-    int i = 0;
-    while (numbers[i] != NULL)
-        i++;
-    return (i);
+	int	i;
+
+	i = 0;
+	while (numbers[i] != NULL)
+		i++;
+	return (i);
 }
 
-void parse_input(int argc, char **argv, t_stack *SA)
+void	parse_input(int argc, char **argv, t_stack *SA)
 {
-    char **numbers;
-    int *values;
-    int count;
-    int need_free;
+	char	**numbers;
+	int		*values;
+	int		count;
+	int		need_free;
 
-    numbers = get_numbers(argc, argv, &need_free);
-    if (!numbers)
-        error_exit();
-    count = count_numbers(numbers);
-    if (count == 0)
-        error_exit();
-    values = malloc(sizeof(int) * count);
-    if (!values)
-        error_exit();
-    fill_values(numbers, values, count);
-    if (has_duplicate(values, count))
-        error_exit();
-    build_stack(SA, values, count);
-    free(values);
-    if (need_free)
-        free_split(numbers);
+	numbers = get_numbers(argc, argv, &need_free);
+	if (!numbers)
+		error_exit();
+	count = count_numbers(numbers);
+	if (count == 0)
+		error_exit();
+	values = malloc(sizeof(int) * count);
+	if (!values)
+		error_exit();
+	fill_values(numbers, values, count);
+	if (has_duplicate(values, count))
+		error_exit();
+	build_stack(SA, values, count);
+	free(values);
+	if (need_free)
+		free_split(numbers);
 }
 // void parse_input(int argc, char** argv, t_stack *SA)
 // {
